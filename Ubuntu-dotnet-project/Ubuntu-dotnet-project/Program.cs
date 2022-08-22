@@ -5,6 +5,8 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+await Ubuntu_dotnet_project.MQTTClient.MQTTClient.Handle_Received_Application_Message();
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -23,5 +25,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
 
 app.Run();
