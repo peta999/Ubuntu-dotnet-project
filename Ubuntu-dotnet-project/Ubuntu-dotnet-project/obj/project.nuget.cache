@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "UR4w3AouyMDFg3SrPdIwzPAyJjBBT9M7Gl9nlioN+B31QjOP2IuzEO9WEMDip913CipR4ezsjVCjAzrt/66uww==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\hoppe\\Documents\\GitHub\\Ubuntu-dotnet-project\\Ubuntu-dotnet-project\\Ubuntu-dotnet-project\\Ubuntu-dotnet-project.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\hoppe\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.15.1\\microsoft.visualstudio.azure.containers.tools.targets.1.15.1.nupkg.sha512"
+  ],
+  "logs": []
+}
