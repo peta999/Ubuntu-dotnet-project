@@ -27,9 +27,17 @@ public class MQTTClient
             {
                 // This is called after 
                 Console.WriteLine("Received application message2.");
-                string test = e.ApplicationMessage.ConvertPayloadToString();
-                Console.WriteLine(test);
+                if(e.ApplicationMessage.Topic == "test")
+                {
+                    // save in db and log it
+                    Console.WriteLine("Topic: test | Message: " + e.ApplicationMessage.ConvertPayloadToString());
+                    DataBaseContext.
+                } else
+                {
+                    // log it
+                    Console.WriteLine("Topic: " + e.ApplicationMessage.Topic + " | Message: " + e.ApplicationMessage.ConvertPayloadToString());
 
+                }
                 return Task.CompletedTask;
             };
 

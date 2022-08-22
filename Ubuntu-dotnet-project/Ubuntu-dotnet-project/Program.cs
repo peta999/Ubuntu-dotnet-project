@@ -3,6 +3,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddScoped<IDataBaseContext, DataBaseContext>();
+
+
 var app = builder.Build();
 
 await Ubuntu_dotnet_project.MQTTClient.MQTTClient.Handle_Received_Application_Message();
