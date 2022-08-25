@@ -3,12 +3,22 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<IDataBaseContext, DataBaseContext>();
+builder.Services.AddTransient<IDataBaseContext, DataBaseContext>();
 
+
+
+builder.Services.AddHostedService<Ubuntu_dotnet_project.MQTTClient.MQTTClient>();
+
+/*
+Host.CreateDefaultBuilder(args).ConfigureServices(services =>
+{
+    services.AddHostedService<Ubuntu_dotnet_project.mqtt.Pinger>();
+});
+*/
 
 var app = builder.Build();
 
-await Ubuntu_dotnet_project.MQTTClient.MQTTClient.Handle_Received_Application_Message();
+DatabaseHandler.CheckCreateDatabase(app.Configuration);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

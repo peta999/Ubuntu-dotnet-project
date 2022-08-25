@@ -1,4 +1,5 @@
 using Microsoft.Data.Sqlite;
+using System.IO;
 
 
 
@@ -7,7 +8,7 @@ public static class DatabaseHandler
     public static void CheckCreateDatabase(IConfiguration config)
     {
         string filePath = config.GetConnectionString("mainDB");
-        if (!File.Exists(filePath))
+        if (!File.Exists(@"C:\Users\hoppe\Documents\GitHub\Ubuntu-dotnet-project\Ubuntu-dotnet-project\Ubuntu-dotnet-project\database.db"))
         {
             using (var connection = new SqliteConnection(filePath))
             {
@@ -26,7 +27,8 @@ public static class DatabaseHandler
                 command1.CommandText =
                     @"
 				CREATE TABLE DataLog (
-                Time DATETIME PRIMARY KEY AUTOINCREMENT,
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                Time DATETIME,
                 Temperature REAL,
                 Humidity REAL);";
                 command1.ExecuteNonQuery();
