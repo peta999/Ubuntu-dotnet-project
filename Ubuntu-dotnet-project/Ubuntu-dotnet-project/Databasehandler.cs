@@ -8,7 +8,10 @@ public static class DatabaseHandler
     public static void CheckCreateDatabase(IConfiguration config)
     {
         string filePath = config.GetConnectionString("mainDB");
-        if (!File.Exists(@"C:\Users\hoppe\Documents\GitHub\Ubuntu-dotnet-project\Ubuntu-dotnet-project\Ubuntu-dotnet-project\database.db"))
+        string fileName = "database.db";
+        FileInfo f = new FileInfo(fileName);
+        string fullPath = f.FullName;
+        if (!File.Exists(fullPath))
         {
             using (var connection = new SqliteConnection(filePath))
             {

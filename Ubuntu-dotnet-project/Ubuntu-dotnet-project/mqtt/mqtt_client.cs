@@ -36,10 +36,10 @@ public class MQTTClient : BackgroundService
             {
                 // This is called after 
                 Console.WriteLine("Received application message.");
-                if(e.ApplicationMessage.Topic == "test")
+                if(e.ApplicationMessage.Topic == "data")
                 {
                     // save in db and log it
-                    Console.WriteLine("Topic: test | Message: " + e.ApplicationMessage.ConvertPayloadToString());
+                    Console.WriteLine("Topic: " + e.ApplicationMessage.Topic + " | Message: " + e.ApplicationMessage.ConvertPayloadToString());
 
                     DataLog data = ParseDateReturnDataLog(e.ApplicationMessage.ConvertPayloadToString());
                     _db.AddDataLog(data);
@@ -54,7 +54,7 @@ public class MQTTClient : BackgroundService
             await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
 
             var mqttSubscribeOptions = mqttFactory.CreateSubscribeOptionsBuilder()
-                .WithTopicFilter("test")
+                .WithTopicFilter("data")
                 .Build();
 
             await mqttClient.SubscribeAsync(mqttSubscribeOptions, CancellationToken.None);
@@ -76,7 +76,6 @@ public class MQTTClient : BackgroundService
         string[] dataArray = data.Split(',');
         double temp;
         double hum;
-        DateTime date;
         
         if (double.TryParse(dataArray[0], NumberStyles.Any, CultureInfo.InvariantCulture, out temp) && double.TryParse(dataArray[1], NumberStyles.Any, CultureInfo.InvariantCulture, out hum))
         {
